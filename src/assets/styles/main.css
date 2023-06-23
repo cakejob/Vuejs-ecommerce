@@ -1,0 +1,11 @@
+@import './base.css';
+
+
+.ant-list {
+    width: 100% !important;
+}
+
+.item-view li label{
+    font-weight: bold;
+    padding-right: 5px;
+}
