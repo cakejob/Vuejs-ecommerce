@@ -1,7 +1,6 @@
 <template>
-    this is Admin Layout
     <Header />
-    <div class="conatainer-fluid">
+    <div class="grid grid-cols-2">
         <div class="row">
             <div class="col-sm-3 d-none d-sm-flex">
                 <a-list bordered>

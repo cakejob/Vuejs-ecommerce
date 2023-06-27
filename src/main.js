@@ -1,15 +1,14 @@
 import "ant-design-vue/dist/antd.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/styles/tailwind.css";
 import "./assets/styles/main.css";
 
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
+import "./axios.js";
 import { createPinia } from "pinia";
-
-import axios from "axios";
-window.axios = axios;
+import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 
 import { registerGlolbalComponents } from "@/utils/import.js";
 /** 
@@ -18,6 +17,8 @@ Import Ant design view Components
 import { Drawer, List, Button, message } from "ant-design-vue";
 
 const pinia = createPinia();
+pinia.use(piniaPluginPersistedstate);
+
 const app = createApp(App);
 
 registerGlolbalComponents(app);

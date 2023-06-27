@@ -33,8 +33,8 @@ export default defineComponent({
         StarTwoTone
     },
     setup() {
-        const menuStore = useMenu();
-        const { selectedKeys, openKeys } = useMenu;
+        const menu = useMenu();
+        const { selectedKeys, openKeys } = menu;
 
         return {
             selectedKeys, openKeys

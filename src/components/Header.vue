@@ -1,19 +1,29 @@
 <template>
-    <header class="container-fluid" style="background-color: #666; padding: 10px 20px;">
-        <div class="row text-white">
-            <div class="col-1 d-flex d-sm-none">
-                <span @click="showDrawer()">X</span>
+    <header class="flex flex-row justify-between" style="background-color: #666; padding: 10px 20px;">
+        <div class="flex flex-row justify-between">
+            <span @click="showDrawer()" class="show lg:hidden">X</span>
+            <div class="flex bg-white">
+                <img src="../assets//logo.svg" width="40" height="30" alt="Logo" class="rounded-full block h-12" />
             </div>
-            <div class="col-10 d-flex col-sm-9 justify-content-center justify-content-sm-start">
-                <img src="../assets//logo.svg" width="40" height="30" alt="Logo" />
-                <span class="d-none d-sm-flex">Administrator</span>
+            <span class="d-none d-sm-flex">Administrator</span>
+        </div>
+
+        <div class="flex flex-row order-last items-center">
+            <div class="flex items-center">
+                <img src="../../src/assets/images/avatar.jpeg" width="40" height="30" alt="Logo"
+                    class="rounded-full block h-8 w-8" />
+                <span class="flex px-2 text-white">John Doe</span>
             </div>
-            <div class="col-3 d-none d-sm-flex justify-content-end">
-                Admin Nguyen
-            </div>
-            <div class="col-1 d-flex d-sm-none">
-                <span @click="showDrawerUser()">X</span>
-            </div>
+            <ul>
+                <li>
+                    <router-link :to="{ name: 'admin-account-edit', params: { id: userStore.id ? userStore.id : 0 } }">My
+                        profile</router-link>
+                </li>
+                <li>
+                    <span @click="handleLogout">Logout </span>
+                </li>
+            </ul>
+            <span @click="showDrawerUser()" class="show lg:hidden">X</span>
         </div>
 
     </header>
@@ -35,12 +45,18 @@
 <script>
 import { defineComponent, ref } from 'vue';
 import MenuBar from './MenuBar.vue';
+import { useUserStore } from '@/stores/user-store';
+import { useRouter } from 'vue-router';
 
 export default defineComponent({
     components: {
         MenuBar
     },
     setup() {
+        const userStore = useUserStore();
+
+        const router = useRouter();
+
         const placement = ref('left');
         const visible = ref(false);
         const showDrawer = () => {
@@ -58,6 +74,21 @@ export default defineComponent({
             visibleUser.value = false;
         };
 
+        console.log("User_id prepare logut sucess", userStore.id);
+        console.log("Toke prepare logut sucess", userStore.token);
+
+        const handleLogout = async () => {
+            try {
+
+                const response = await axios.post('logout', { user_id: userStore.id });
+
+                userStore.clearUser();
+                router.push({ name: 'login' });
+            } catch (error) {
+                console.error("logout errors", error);
+            }
+        };
+
         return {
             placement,
             visible,
@@ -65,7 +96,9 @@ export default defineComponent({
             onClose,
             visibleUser,
             showDrawerUser,
-            onCloseUser
+            onCloseUser,
+            userStore,
+            handleLogout
         };
     },
 });

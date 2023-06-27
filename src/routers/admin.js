@@ -1,9 +1,14 @@
+import { useUserStore } from "@/stores/user-store";
+
 const adminRouter = [
   {
     path: "/admin",
     name: "admin",
     meta: {
       layout: "admin",
+    },
+    beforeEnter: (to, from, next) => {
+      useUserStore().id ? next() : next("/auth/login");
     },
     component: () => import("../layouts/Admin.vue"),
     children: [
@@ -31,6 +36,16 @@ const adminRouter = [
         path: "roles",
         name: "admin-roles",
         component: () => import("../views/admins/roles/Index.vue"),
+      },
+      {
+        path: "account/edit/:id",
+        name: "admin-account-edit",
+        component: () => import("../views/admins/accounts/EditProfile.vue"),
+      },
+      {
+        path: "account",
+        name: "admin-account",
+        component: () => import("../views/admins/accounts/Index.vue"),
       },
     ],
   },

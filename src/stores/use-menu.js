@@ -15,4 +15,5 @@ export const useMenu = defineStore("menuId", {
       this.openKeys = data;
     },
   },
+  persist: true,
 });
