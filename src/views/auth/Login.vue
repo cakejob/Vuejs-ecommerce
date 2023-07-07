@@ -45,6 +45,11 @@ const handleLogin = async () => {
 
     try {
         const response = await axios.post('login', params);
+        if (response.data.error) {
+            errors.value = response.data.errors;
+
+        }
+        console.log("Login data", response.data)
         axios.defaults.headers.common['Authorization'] = response.data.token;
         userStore.setUserDetails(response);
 

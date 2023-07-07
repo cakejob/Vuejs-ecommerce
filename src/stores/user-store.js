@@ -3,10 +3,12 @@ import { defineStore } from "pinia";
 export const useUserStore = defineStore("user", {
   state: () => ({
     id: 0,
+    token: "",
     firstName: "",
     lastName: "",
     email: "",
-    token: "",
+    location: "",
+    description: "",
   }),
   actions: {
     setUserDetails(res) {
@@ -16,6 +18,8 @@ export const useUserStore = defineStore("user", {
       this.$state.firstName = res.data.user.first_name;
       this.$state.lastName = res.data.user.last_name;
       this.$state.email = res.data.user.email;
+      this.$state.location = res.data.user.location;
+      this.$state.description = res.data.user.description;
     },
     clearUser() {
       this.$state.id = 0;
@@ -23,6 +27,9 @@ export const useUserStore = defineStore("user", {
       this.$state.firstName = "";
       this.$state.lastName = "";
       this.$state.email = "";
+      this.$state.location = "";
+      this.$state.description = "";
+      t;
     },
   },
   persist: true,

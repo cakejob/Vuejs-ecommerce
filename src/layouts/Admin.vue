@@ -1,8 +1,8 @@
 <template>
     <Header />
-    <div class="grid grid-cols-2">
-        <div class="row">
-            <div class="col-sm-3 d-none d-sm-flex">
+    <div class="">
+        <div class="grid grid-cols-12">
+            <div class="col-span-2">
                 <a-list bordered>
                     <MenuBar />
                     <template #header>
@@ -10,7 +10,7 @@
                     </template>
                 </a-list>
             </div>
-            <div class="col-sm-9">
+            <div class="col-span-10">
                 <router-view></router-view>
             </div>
         </div>

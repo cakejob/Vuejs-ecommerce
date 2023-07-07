@@ -17,6 +17,11 @@
                 <star-two-tone two-tone-color="#eb2f96" /> Cài đặt Roles
             </router-link>
         </a-menu-item>
+        <a-menu-item key="admin-account">
+            <router-link :to="{ name: 'admin-account' }">
+                <star-two-tone two-tone-color="#eb2f96" /> Account
+            </router-link>
+        </a-menu-item>
     </a-menu>
 </template>
 

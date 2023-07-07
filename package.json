@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build --mode prod",
-    "stage" : "vite build --mode stage",
+    "stage": "vite build --mode stage",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -17,6 +17,7 @@
     "pinia": "^2.1.4",
     "pinia-plugin-persistedstate": "^3.1.0",
     "vue": "^3.3.4",
+    "vue-advanced-cropper": "^2.8.8",
     "vue-router": "4"
   },
   "devDependencies": {

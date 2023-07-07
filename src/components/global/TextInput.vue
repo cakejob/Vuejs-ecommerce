@@ -36,10 +36,10 @@ const props = defineProps({
     label: String,
     labelColor: { type: Boolean, default: true },
     inputValue: String,
-    placeholder: { type: String, default: '' },
+    placeHolder: { type: String, default: '' },
     inputType: String,
     error: String
-})
+});
 
 const { label, labelColor, inputValue, placeholder, error } = toRefs(props)
 
